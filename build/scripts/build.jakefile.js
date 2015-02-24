@@ -30,7 +30,7 @@
 	//*** GENERAL
 
 	desc("Lint and test");
-	task("default", ["version", "lint", "test"], function() {
+	task("default", ["version", "lint" /*, "test" */], function() {
 		var elapsedSeconds = (Date.now() - startTime) / 1000;
 		console.log("\n\nBUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
 	});
