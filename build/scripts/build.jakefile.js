@@ -36,7 +36,7 @@
 	});
 
 	desc("Start server (for manual testing)");
-	task("run", ["build"], function() {
+	task("run", ["default", "build"], function() {
 		jake.exec("node ./node_modules/http-server/bin/http-server " + paths.clientDistDir, { interactive: true }, complete);
 	}, {async: true});
 
