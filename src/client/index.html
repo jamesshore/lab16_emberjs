@@ -6,16 +6,18 @@
 <body>
 
 	<script type="text/x-handlebars">
-		<h2>This is an Ember.js Example!</h2>
+		<h2>This is an Ember.js Example 2!</h2>
 
-	  {{outlet}}
+		{{hello-world}}
 	</script>
 
-	<script type="text/x-handlebars" id="index">
-	  {{input value=firstName placeholder="First name"}}
+	<script type="text/x-handlebars" id="components/hello-world">
+		<p>This is the 'Hello World!' component!</p>
+
+		{{input value=firstName placeholder="First name"}}
 		{{input value=lastName placeholder="Last name"}}
 
-		<p>Hello, {{fullName}}!</p>
+		<p>Hello, {{fullName}} ({{firstName}} {{lastName}})!</p>
 	</script>
 
 
@@ -27,7 +29,7 @@
 	<script>
     App = Ember.Application.create();
 
-    App.IndexController = Ember.Controller.extend({
+    App.HelloWorldComponent = Ember.Component.extend({
       firstName: "Trek",
       lastName: "Glowacki",
 	    fullName: function() {
