@@ -1,25 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ember.js Example</title>
+  <title>Ember.js Example</title>
+	<link rel="stylesheet" type="text/css" href="screen.css">
 </head>
 <body>
 
 	<script type="text/x-handlebars">
-		<h2>This is an Ember.js Example 2!</h2>
+		<h1>Financial Projector</h1>
+	  <h2>An Ember.js Example from <em>Let’s Code: Test-Driven JavaScript</em></h2>
 
-		{{hello-world}}
+	  {{example-application}}
+
+	  <div className="footer">
+	   <p>This application demonstrates Ember.js. The financial calculations are made up. Do not use it for real finances.</p>
+	  </div>
 	</script>
 
-	<script type="text/x-handlebars" id="components/hello-world">
-		<p>This is the 'Hello World!' component!</p>
-
-		{{input value=firstName placeholder="First name"}}
-		{{input value=lastName placeholder="Last name"}}
-
-		<p>Hello, {{fullName}} ({{firstName}} {{lastName}})!</p>
+	<script type="text/x-handlebars" id="components/example-application">
+		{{configuration-panel}}
+		<hr />
+		{{stock-market-table}}
 	</script>
 
+	<script type="text/x-handlebars" id="components/configuration-panel">
+		<div class="config">
+			{{configuration-field}}
+			{{configuration-field}}
+			{{configuration-field}}
+		</div>
+	</script>
+
+	<script type="text/x-handlebars" id="components/configuration-field">
+		<label>Configuration:</label>
+		{{input}}
+	</script>
+	
+	<script type="text/x-handlebars" id="components/stock-market-table">
+		<table class="stockmarket">
+			<thead>
+				<tr>
+					<th>Year</th>
+					<th>Starting Balance</th>
+					<th>Cost Basis</th>
+					<th>Sell Orders</th>
+					<th>Taxes</th>
+					<th>Growth</th>
+					<th>Ending Balance</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{stock-market-row}}
+				{{stock-market-row}}
+				{{stock-market-row}}
+			</tbody>
+		</table>
+	</script>
+
+	<script type="text/x-handlebars" id="components/stock-market-row">
+		<tr>
+			<td>2010</td>
+			<td>$10,000</td>
+			<td>$7,000</td>
+			<td class="negative">($695)</td>
+			<td class="negative">($232)</td>
+			<td>$907</td>
+			<td>$9,981</td>
+		</tr>
+	</script>
 
 
 	<script src="vendor/jquery-1.10.2.js"></script>
