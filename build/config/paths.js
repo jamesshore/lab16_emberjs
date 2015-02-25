@@ -12,6 +12,7 @@
 		clientDistDir: "generated/dist/client",
 
 		clientDir: "src/client",
+		vendorDir: "src/vendor",
 		clientEntryPoint: "src/client/example.js",
 		clientDistBundle: "generated/dist/client/bundle.js"
 	};
