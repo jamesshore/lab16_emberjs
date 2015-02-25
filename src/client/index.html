@@ -58,15 +58,13 @@
 	</script>
 
 	<script type="text/x-handlebars" id="components/stock-market-row">
-		<tr>
-			<td>2010</td>
-			<td>$10,000</td>
-			<td>$7,000</td>
-			<td class="negative">($695)</td>
-			<td class="negative">($232)</td>
-			<td>$907</td>
-			<td>$9,981</td>
-		</tr>
+		<td>2010</td>
+		<td>$10,000</td>
+		<td>$7,000</td>
+		<td class="negative">($695)</td>
+		<td class="negative">($232)</td>
+		<td>$907</td>
+		<td>$9,981</td>
 	</script>
 
 
@@ -77,12 +75,8 @@
 	<script>
     App = Ember.Application.create();
 
-    App.HelloWorldComponent = Ember.Component.extend({
-      firstName: "Trek",
-      lastName: "Glowacki",
-	    fullName: function() {
-		    return this.get("firstName")[0] + ". " + this.get("lastName");
-	    }.property("firstName", "lastName")
+    App.StockMarketRowComponent = Ember.Component.extend({
+      tagName: "tr"
     });	</script>
 
 </body>
