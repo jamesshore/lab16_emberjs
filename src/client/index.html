@@ -26,7 +26,11 @@
 
 	<script>
     App = Ember.Application.create();
-	</script>
+
+    App.IndexController = Ember.Controller.extend({
+      firstName: "Trek",
+      lastName: "Glowacki"
+    });	</script>
 
 </body>
 </html>
