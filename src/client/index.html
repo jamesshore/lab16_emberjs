@@ -15,7 +15,7 @@
 	  {{input value=firstName placeholder="First name"}}
 		{{input value=lastName placeholder="Last name"}}
 
-		<p>Hello, {{firstName}} {{lastName}}!</p>
+		<p>Hello, {{fullName}}!</p>
 	</script>
 
 
@@ -29,7 +29,10 @@
 
     App.IndexController = Ember.Controller.extend({
       firstName: "Trek",
-      lastName: "Glowacki"
+      lastName: "Glowacki",
+	    fullName: function() {
+		    return this.get("firstName")[0] + ". " + this.get("lastName");
+	    }.property("firstName", "lastName")
     });	</script>
 
 </body>
