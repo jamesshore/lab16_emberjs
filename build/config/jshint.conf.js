@@ -57,7 +57,10 @@
 		// CommonJS
 		exports: false,
 		require: false,
-		module: false
+		module: false,
+
+		// Ember
+		Ember: false
 	});
 
 }());

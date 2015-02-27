@@ -97,7 +97,7 @@
 		shell.rm("-rf", paths.distDir);
 	});
 
-	task("buildClient", [ paths.clientDistDir /*, "bundleClientJs"*/ ], function() {
+	task("buildClient", [ paths.clientDistDir, "bundleClientJs" ], function() {
 		console.log("Copying client code: .");
 		shell.cp("-R",
 				paths.vendorDir,
@@ -106,8 +106,6 @@
 				paths.clientDir + "/*.png",
 			paths.clientDistDir
 		);
-
-		shell.cp(paths.clientDir + "/*.js", paths.clientDistDir);
 	});
 
 	task("bundleClientJs", [ paths.clientDistDir ], function() {
@@ -116,7 +114,7 @@
 			entry: paths.clientEntryPoint,
 			outfile: paths.clientDistBundle,
 			options: {
-				standalone: "example",
+				standalone: "App",
 				debug: true
 			}
 		}, complete, fail);
