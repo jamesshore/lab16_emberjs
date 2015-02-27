@@ -132,7 +132,7 @@
 		templatePaths.forEach(function(templatePath) {
 			process.stdout.write(".");
 			var template = fs.readFileSync(templatePath, { encoding: "utf8" });
-			var templateName = path.basename(templatePath, ".hbs").replace("_", "-");
+			var templateName = path.basename(templatePath, ".hbs").replace(/_/g, "-");
 
 			output += "" +
 				"Ember.TEMPLATES['components/" + templateName + "'] = Ember.HTMLBars.template(" +
