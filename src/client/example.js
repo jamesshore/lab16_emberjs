@@ -3,7 +3,6 @@
 	"use strict";
 
 	var App = exports.module = Ember.Application.create();
-
 	App.StockMarketRowComponent = require("./ui/stock_market_row.js");
 
 }());

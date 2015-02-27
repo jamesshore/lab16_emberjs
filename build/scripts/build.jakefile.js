@@ -97,7 +97,7 @@
 		shell.rm("-rf", paths.distDir);
 	});
 
-	task("buildClient", [ paths.clientDistDir, "bundleClientJs" ], function() {
+	task("buildClient", [ paths.clientDistDir, "bundleClientJs", "compileTemplates" ], function() {
 		console.log("Copying client code: .");
 		shell.cp("-R",
 				paths.vendorDir,
@@ -119,6 +119,22 @@
 			}
 		}, complete, fail);
 	}, { async: true });
+
+	task("compileTemplates", function() {
+		var fs = require("fs");
+		var compiler = require("../../src/vendor/ember-template-compiler-1.10.0.js");
+
+		var template = fs.readFileSync("src/client/ui/example_application.hbs", { encoding: "utf8" });
+
+		var output = compiler.precompile(template, false);
+		output = "" +
+			"Ember.TEMPLATES['components/example-application'] = Ember.HTMLBars.template(" +
+				output +
+			");";
+
+		fs.writeFileSync("generated/dist/client/templates.js", output);
+	});
+
 
 
 	//*** CHECK VERSIONS
