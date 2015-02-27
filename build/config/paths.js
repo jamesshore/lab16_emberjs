@@ -12,9 +12,10 @@
 		clientDistDir: "generated/dist/client",
 
 		clientDir: "src/client",
+		applicationTemplate: "src/client/application.hbs",
 		componentTemplatesDir: "src/client/ui",
 		vendorDir: "src/vendor",
-		clientEntryPoint: "src/client/example.js",
+		clientEntryPoint: "src/client/application.js",
 		clientDistBundle: "generated/dist/client/bundle.js"
 	};
 

@@ -126,11 +126,10 @@
 	task("compileTemplates", function() {
 		process.stdout.write("Compiling HTMLBars templates: ");
 
-		var output = compileTemplate("src/client/example.hbs", "application");
+		var output = compileTemplate(paths.applicationTemplate, "application");
 
 		var templatePaths = (new jake.FileList(paths.componentTemplatesDir + "/*.hbs"));
 		templatePaths.forEach(function(templatePath) {
-			process.stdout.write(".");
 			var templateName = "components/" + path.basename(templatePath, ".hbs").replace(/_/g, "-");
 			output += compileTemplate(templatePath, templateName);
 		});
@@ -139,11 +138,12 @@
 		process.stdout.write("\n");
 
 		function compileTemplate(templatePath, templateName) {
+			process.stdout.write(".");
 			var template = fs.readFileSync(templatePath, {encoding: "utf8"});
 
 			return "Ember.TEMPLATES['" + templateName + "'] = Ember.HTMLBars.template(" +
 				htmlBarsCompiler.precompile(template, false) +
-				");";
+			");";
 		}
 	});
 
