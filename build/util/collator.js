@@ -1,8 +1,9 @@
-/* Copyright (c) 2014 Titanium I.T. LLC - See LICENSE.txt for license */
+/* Copyright (c) 2015 Titanium I.T. LLC - See LICENSE.txt for license */
 "use strict";
 
 var shell = require("shelljs");
 var path = require("path");
+var jake = require("jake");
 
 exports.collate = function(config, success, failure) {
 	var dest = config.dest;
