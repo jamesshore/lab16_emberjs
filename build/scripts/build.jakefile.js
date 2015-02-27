@@ -7,14 +7,15 @@
 
 	var startTime = Date.now();
 
+	var fs = require("fs");
+	var path = require("path");
 	var shell = require("shelljs");
 	var jshint = require("simplebuild-jshint");
 	var mocha = require("../util/mocha_runner.js");
 	var karma = require("../util/karma_runner.js");
 	var browserify = require("../util/browserify_runner.js");
 	var version = require("../util/version_checker.js");
-	var fs = require("fs");
-	var path = require("path");
+	var collator = require("../util/collator.js");
 	var htmlBarsCompiler = require("../../src/vendor/ember-template-compiler-1.10.0.js");
 
 	var browsers = require("../config/tested_browsers.js");
@@ -127,17 +128,14 @@
 	task("collateClient", [ paths.collatedClientJsDir, "compileTemplates" ], function() {
 		process.stdout.write("Collating client-side JavaScript: .");
 		shell.rm("-rf", paths.collatedClientJsDir + "/*");
-		shell.cp("-R", paths.compiledTemplatesDir + "/*", paths.collatedClientJsDir);
-
-		var clientJsFiles = new jake.FileList(paths.clientSrcDir + "/**/*.js");
-		clientJsFiles.forEach(function(file) {
-			process.stdout.write(".");
-			var relativeFilename = "/" + file.replace(paths.clientSrcDir + "/", "");
-			shell.mkdir("-p", path.dirname(paths.collatedClientJsDir + relativeFilename));
-			shell.cp(paths.clientSrcDir + relativeFilename, paths.collatedClientJsDir + relativeFilename);
-		});
-		process.stdout.write("\n");
-	});
+		collator.collate({
+			src: [
+				{ root: paths.compiledTemplatesDir, files: "*" },
+				{ root: paths.clientSrcDir, files: "**/*.js" }
+			],
+			dest: paths.collatedClientJsDir
+		}, complete, fail);
+	}, { async: true });
 
 	task("compileTemplates", [ paths.compiledTemplatesDir ], function() {
 		process.stdout.write("Compiling HTMLBars templates: ");
