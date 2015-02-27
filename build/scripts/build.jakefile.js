@@ -45,6 +45,7 @@
 
 	desc("Delete generated files");
 	task("clean", function() {
+		console.log("rm -rf " + paths.generatedDir);
 		shell.rm("-rf", paths.generatedDir);
 	});
 
@@ -100,21 +101,21 @@
 		shell.rm("-rf", paths.distDir);
 	});
 
-	task("buildClient", [ paths.clientDistDir, "bundleClientJs", "compileTemplates" ], function() {
+	task("buildClient", [ paths.clientDistDir, "bundleClientJs" ], function() {
 		console.log("Copying client code: .");
 		shell.cp("-R",
-				paths.vendorDir,
-				paths.clientDir + "/*.html",
-				paths.clientDir + "/*.css",
-				paths.clientDir + "/*.png",
+				paths.vendorSrcDir,
+				paths.clientSrcDir + "/*.html",
+				paths.clientSrcDir + "/*.css",
+				paths.clientSrcDir + "/*.png",
 			paths.clientDistDir
 		);
 	});
 
-	task("bundleClientJs", [ paths.clientDistDir ], function() {
+	task("bundleClientJs", [ paths.clientDistDir, "collateClient" ], function() {
 		console.log("Bundling browser code with Browserify: .");
 		browserify.bundle({
-			entry: paths.clientEntryPoint,
+			entry: paths.browserifyEntryPoint,
 			outfile: paths.clientDistBundle,
 			options: {
 				standalone: "App",
@@ -123,25 +124,40 @@
 		}, complete, fail);
 	}, { async: true });
 
-	task("compileTemplates", function() {
+	task("collateClient", [ paths.collatedClientJsDir, "compileTemplates" ], function() {
+		process.stdout.write("Collating client-side JavaScript: .");
+		shell.rm("-rf", paths.collatedClientJsDir + "/*");
+		shell.cp("-R", paths.compiledTemplatesDir + "/*", paths.collatedClientJsDir);
+
+		var clientJsFiles = new jake.FileList(paths.clientSrcDir + "/**/*.js");
+		clientJsFiles.forEach(function(file) {
+			process.stdout.write(".");
+			var relativeFilename = "/" + file.replace(paths.clientSrcDir + "/", "");
+			shell.mkdir("-p", path.dirname(paths.collatedClientJsDir + relativeFilename));
+			shell.cp(paths.clientSrcDir + relativeFilename, paths.collatedClientJsDir + relativeFilename);
+		});
+		process.stdout.write("\n");
+	});
+
+	task("compileTemplates", [ paths.compiledTemplatesDir ], function() {
 		process.stdout.write("Compiling HTMLBars templates: ");
 
-		var output = compileTemplate(paths.applicationTemplate, "application");
+		var output = compileTemplate(paths.applicationTemplateSrc, "application");
 
-		var templatePaths = (new jake.FileList(paths.componentTemplatesDir + "/*.hbs"));
+		var templatePaths = (new jake.FileList(paths.componentTemplatesSrcDir + "/*.hbs"));
 		templatePaths.forEach(function(templatePath) {
 			var templateName = "components/" + path.basename(templatePath, ".hbs").replace(/_/g, "-");
 			output += compileTemplate(templatePath, templateName);
 		});
 
-		fs.writeFileSync("generated/dist/client/templates.js", output);
+		fs.writeFileSync(paths.compiledTemplatesModule, output);
 		process.stdout.write("\n");
 
 		function compileTemplate(templatePath, templateName) {
 			process.stdout.write(".");
 			var template = fs.readFileSync(templatePath, {encoding: "utf8"});
 
-			return "Ember.TEMPLATES['" + templateName + "'] = Ember.HTMLBars.template(" +
+			return "exports['" + templateName + "'] = Ember.HTMLBars.template(" +
 				htmlBarsCompiler.precompile(template, false) +
 			");";
 		}
@@ -165,7 +181,8 @@
 
 	//*** CREATE DIRECTORIES
 
-	directory(paths.testDir);
 	directory(paths.clientDistDir);
+	directory(paths.collatedClientJsDir);
+	directory(paths.compiledTemplatesDir);
 
 }());

@@ -7,16 +7,22 @@
 
 	module.exports = {
 		generatedDir: "generated",
-		testDir: "generated/test",
+
 		distDir: "generated/dist",
 		clientDistDir: "generated/dist/client",
 
-		clientDir: "src/client",
-		applicationTemplate: "src/client/application.hbs",
-		componentTemplatesDir: "src/client/ui",
-		vendorDir: "src/vendor",
-		clientEntryPoint: "src/client/application.js",
-		clientDistBundle: "generated/dist/client/bundle.js"
+		compiledTemplatesDir: "generated/hbs",
+		compiledTemplatesModule: "generated/hbs/templates.js",
+
+		collatedClientJsDir: "generated/client",
+
+		browserifyEntryPoint: "generated/client/application.js",
+		clientDistBundle: "generated/dist/client/bundle.js",
+
+		clientSrcDir: "src/client",
+		applicationTemplateSrc: "src/client/application.hbs",
+		componentTemplatesSrcDir: "src/client/ui",
+		vendorSrcDir: "src/vendor"
 	};
 
 }());
