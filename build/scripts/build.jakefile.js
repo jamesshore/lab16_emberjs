@@ -13,6 +13,9 @@
 	var karma = require("../util/karma_runner.js");
 	var browserify = require("../util/browserify_runner.js");
 	var version = require("../util/version_checker.js");
+	var fs = require("fs");
+	var path = require("path");
+	var htmlBarsCompiler = require("../../src/vendor/ember-template-compiler-1.10.0.js");
 
 	var browsers = require("../config/tested_browsers.js");
 	var jshintConfig = require("../config/jshint.conf.js");
@@ -121,18 +124,24 @@
 	}, { async: true });
 
 	task("compileTemplates", function() {
-		var fs = require("fs");
-		var compiler = require("../../src/vendor/ember-template-compiler-1.10.0.js");
+		process.stdout.write("Compiling HTMLBars templates: ");
 
-		var template = fs.readFileSync("src/client/ui/example_application.hbs", { encoding: "utf8" });
+		var output = "";
 
-		var output = compiler.precompile(template, false);
-		output = "" +
-			"Ember.TEMPLATES['components/example-application'] = Ember.HTMLBars.template(" +
-				output +
-			");";
+		var templatePaths = (new jake.FileList(paths.componentTemplatesDir + "/*.hbs"));
+		templatePaths.forEach(function(templatePath) {
+			process.stdout.write(".");
+			var template = fs.readFileSync(templatePath, { encoding: "utf8" });
+			var templateName = path.basename(templatePath, ".hbs").replace("_", "-");
+
+			output += "" +
+				"Ember.TEMPLATES['components/" + templateName + "'] = Ember.HTMLBars.template(" +
+					htmlBarsCompiler.precompile(template, false) +
+				");";
+		});
 
 		fs.writeFileSync("generated/dist/client/templates.js", output);
+		process.stdout.write("\n");
 	});
 
 

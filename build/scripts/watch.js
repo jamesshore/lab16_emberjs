@@ -11,7 +11,7 @@
 
 	console.log("*** Using nodemon to run " + buildCommand.get() + ". Type 'rs<enter>' to force restart.");
 	nodemon({
-		ext: "sh bat json js html css",
+		ext: "sh bat json js html css hbs",
 		ignore: paths.generatedDir,
 		exec: buildCommand.get() + " " + process.argv.slice(2).join(" "),
 		execMap: {
