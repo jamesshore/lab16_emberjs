@@ -40,7 +40,10 @@
 		beforeEach: false,
 		afterEach: false,
 		describe: false,
-		it: false
+		it: false,
+
+		// Console
+		console: false
 	};
 
 	exports.nodeGlobals = merge(universalGlobals, {
@@ -59,7 +62,10 @@
 		module: false,
 
 		// Ember
-		Ember: false
+		Ember: false,
+
+		// Expect.js
+		expect: false
 	});
 
 }());
