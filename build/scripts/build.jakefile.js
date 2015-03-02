@@ -33,7 +33,7 @@
 	//*** GENERAL
 
 	desc("Lint and test");
-	task("default", ["version", "lint" /*, "test" */], function() {
+	task("default", [ "version", "lint", "test" ], function() {
 		var elapsedSeconds = (Date.now() - startTime) / 1000;
 		console.log("\n\nBUILD OK  (" + elapsedSeconds.toFixed(2) + "s)");
 	});
@@ -53,7 +53,7 @@
 	//*** LINT
 
 	desc("Lint everything");
-	task("lint", ["lintNode", "lintClient"]);
+	task("lint", [ "lintNode", "lintClient" ]);
 
 	task("lintNode", function() {
 		process.stdout.write("Linting Node.js code: ");
@@ -82,7 +82,7 @@
 	}, { async: true });
 
 	desc("Run tests");
-	task("test", function() {
+	task("test", [ "collateClient" ], function() {
 		console.log("Testing browser code: ");
 		karma.runTests({
 			configFile: KARMA_CONFIG,

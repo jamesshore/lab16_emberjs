@@ -3,6 +3,8 @@
 (function() {
 	"use strict";
 
+	var paths = require("./paths.js");
+
 	module.exports = function(config) {
 	  config.set({
 
@@ -16,7 +18,9 @@
 
 	    // list of files / patterns to load in the browser
 	    files: [
-	      'src/client/**/*.js'
+		    'src/vendor/jquery-1.10.2.js',
+		    'src/vendor/ember-1.10.0.debug.js',
+	      'generated/client/**/*.js'
 	    ],
 
 
@@ -29,7 +33,7 @@
 	    // preprocess matching files before serving them to the browser
 	    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 	    preprocessors: {
-		    'src/client/**/*.js': ['commonjs'],
+		    'generated/client/**/*.js': ['commonjs']
 	    },
 
 
