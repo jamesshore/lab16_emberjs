@@ -45,7 +45,6 @@
 
 	exports.nodeGlobals = merge(universalGlobals, {
 		// Jake
-		jake: false,
 		desc: false,
 		task: false,
 		directory: false,
