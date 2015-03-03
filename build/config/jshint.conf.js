@@ -65,9 +65,10 @@
 		Ember: false,
 		"$": false,
 
-		// Karma & Expect.js
+		// Karma, Expect.js, and Ember-Mocha
 		dump: false,
-		expect: false
+		expect: false,
+		describeComponent: false
 	});
 
 }());
