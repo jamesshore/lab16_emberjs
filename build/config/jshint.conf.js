@@ -61,8 +61,9 @@
 		require: false,
 		module: false,
 
-		// Ember
+		// Ember & JQuery
 		Ember: false,
+		"$": false,
 
 		// Expect.js
 		expect: false
