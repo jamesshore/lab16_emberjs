@@ -3,21 +3,9 @@
 (function() {
 	"use strict";
 
-	var templates = require("../templates.js");
-
-	var CommonJsResolver = Ember.DefaultResolver.extend({
-		resolveTemplate: function(parsedName) {
-			var template = templates[parsedName.fullNameWithoutType];
-			if (!template) template = this._super(parsedName);
-			return template;
-		}
-	});
-
-	$("body").html('<div id="ember-testing"></div>');
 	var App = require("../application.js");
-	App.rootElement = '#ember-testing';
 	App.setupForTesting();
-	setResolver(CommonJsResolver.create({ namespace: App }));
+	setResolver(App.Resolver.create({ namespace: App }));
 
 	beforeEach(function() {
 		App.reset();
