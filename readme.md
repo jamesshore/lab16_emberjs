@@ -17,7 +17,7 @@ These episodes are an exploration and review of the [Ember.js](https://emberjs.c
 
 Deviating from Ember's assumptions was an experiment to see how well Ember worked outside its comfort zone. Although the final code is fairly clean, it was a frustrating experience and not necessarily something to do in your own projects.
 
-For further details about how this code works, watch [the screencasts](http://www.letscodejavascript.com/v3/episodes/lab/13).
+For further details about how this code works, watch [the screencasts](http://www.letscodejavascript.com/v3/episodes/lab/16).
 
 
 Setup
