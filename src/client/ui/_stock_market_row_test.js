@@ -44,7 +44,18 @@
 		});
 
 		it("updates the cells when the year changes", function() {
+			var newYear = year.nextYear();
+			Ember.run(function() {
+				component.set("value", newYear);
+			});
 
+			expect(component.get("year")).to.eql(newYear.year());
+			expect(component.get("startingBalance")).to.eql(newYear.startingBalance());
+			expect(component.get("costBasis")).to.eql(newYear.startingCostBasis());
+			expect(component.get("sellOrders")).to.eql(newYear.totalSellOrders().flipSign());
+			expect(component.get("taxes")).to.eql(newYear.capitalGainsTaxIncurred().flipSign());
+			expect(component.get("growth")).to.eql(newYear.growth());
+			expect(component.get("endingBalance")).to.eql(newYear.endingBalance());
 		});
 
 	});
