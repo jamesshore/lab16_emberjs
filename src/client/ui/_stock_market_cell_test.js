@@ -12,17 +12,15 @@
 			$ = this.$();
 		});
 
-		it("renders", function() {
+		it("renders a <td> tag", function() {
 			expect(component.tagName).to.equal("td");
-			//expect($.html()).to.equal(
-			//	"<td>2010</td>\n" +
-			//	"<td>$10,000</td>\n" +
-			//	"<td>$7,000</td>\n" +
-			//	'<td class="negative">($695)</td>\n' +
-			//	'<td class="negative">($232)</td>\n' +
-			//	"<td>$907</td>\n" +
-			//	"<td>$9,981</td>\n"
-			//);
+		});
+
+		it("renders the 'value' parameter", function() {
+			Ember.run(function() {
+				component.set("value", "$10,000");
+			});
+			expect($.html()).to.equal("$10,000");
 		});
 
 	});
