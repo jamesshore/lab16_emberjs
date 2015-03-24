@@ -7,6 +7,10 @@
 		attributeBindings: "title",
 		classNameBindings: "negative",
 
+		text: function() {
+			return this.get("_renderedValue").text();
+		}.property("_renderedValue"),
+
 		title: function() {
 			return this.get("_renderedValue").tooltip();
 		}.property("_renderedValue"),
@@ -30,6 +34,10 @@
 
 	RenderTarget.prototype.render = function(values) {
 		this._values = values;
+	};
+
+	RenderTarget.prototype.text = function() {
+		return this._values.text;
 	};
 
 	RenderTarget.prototype.isNegative = function() {

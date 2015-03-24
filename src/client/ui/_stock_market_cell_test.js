@@ -38,9 +38,10 @@
 
 			expect($.html().trim()).to.equal("($1,234)");
 			expect($.hasClass("negative")).to.be(true);
+			expect($.attr("title")).to.be(undefined);
 		});
 
-		it("renders invalid values with a 'invalid' icon", function() {
+		it("renders invalid values with a 'invalid' icon and tooltip", function() {
 			Ember.run(function() {
 				component.set("value", new InvalidDollars());
 			});
