@@ -3,6 +3,7 @@
 	"use strict";
 
 	var ValidDollars = require("../values/valid_dollars.js");
+	var InvalidDollars = require("../values/invalid_dollars.js");
 
 	describeComponent("stock-market-cell", "StockMarketCell", {}, function() {
 
@@ -25,8 +26,9 @@
 			Ember.run(function() {
 				component.set("value", new ValidDollars(10000));
 			});
-			expect($.html()).to.equal("$10,000");
+			expect($.html().trim()).to.equal("$10,000");
 			expect($.hasClass("negative")).to.be(false);
+			expect($.attr("title")).to.be(undefined);
 		});
 
 		it("renders negative values with a 'negative' CSS class", function() {
@@ -34,8 +36,17 @@
 				component.set("value", new ValidDollars(-1234));
 			});
 
-			expect($.html()).to.equal("($1,234)");
+			expect($.html().trim()).to.equal("($1,234)");
 			expect($.hasClass("negative")).to.be(true);
+		});
+
+		it("renders invalid values with a 'invalid' icon", function() {
+			Ember.run(function() {
+				component.set("value", new InvalidDollars());
+			});
+
+			expect($.html().trim()).to.equal('<img src="/invalid_dollars.png">');
+			expect($.attr("title")).to.equal("Invalid dollar amount");
 		});
 
 	});

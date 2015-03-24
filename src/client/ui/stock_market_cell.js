@@ -4,10 +4,19 @@
 
 	module.exports = Ember.Component.extend({
 	  tagName: "td",
+		attributeBindings: "title",
 		classNameBindings: "negative",
+
+		title: function() {
+			return this.get("_renderedValue").tooltip();
+		}.property("_renderedValue"),
 
 		negative: function() {
 			return this.get("_renderedValue").isNegative();
+		}.property("_renderedValue"),
+
+		invalid: function() {
+			return this.get("_renderedValue").isInvalid();
 		}.property("_renderedValue"),
 
 		_renderedValue: function() {
@@ -25,6 +34,14 @@
 
 	RenderTarget.prototype.isNegative = function() {
 		return this._values.negative;
+	};
+
+	RenderTarget.prototype.isInvalid = function() {
+		return this._values.invalid;
+	};
+
+	RenderTarget.prototype.tooltip = function() {
+		return this._values.tooltip;
 	};
 
 }());
