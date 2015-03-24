@@ -21,13 +21,12 @@
 			expect(component.tagName).to.equal("td");
 		});
 
-		it("renders text of value objects", function() {
-			var value = new ValidDollars(10000);
-
+		it("renders positive values", function() {
 			Ember.run(function() {
-				component.set("value", value);
+				component.set("value", new ValidDollars(10000));
 			});
 			expect($.html()).to.equal("$10,000");
+			expect($.hasClass("negative")).to.be(false);
 		});
 
 		it("renders negative values with a 'negative' CSS class", function() {
@@ -37,11 +36,6 @@
 
 			expect($.html()).to.equal("($1,234)");
 			expect($.hasClass("negative")).to.be(true);
-
-			Ember.run(function() {
-				component.set("value", new ValidDollars(1234));
-			});
-			expect($.hasClass("negative")).to.be(false);
 		});
 
 	});
