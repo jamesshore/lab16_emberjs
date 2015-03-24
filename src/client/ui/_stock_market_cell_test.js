@@ -2,6 +2,8 @@
 (function() {
 	"use strict";
 
+	var ValidDollars = require("../values/valid_dollars.js");
+
 	describeComponent("stock-market-cell", "StockMarketCell", {}, function() {
 
 		var component;
@@ -9,6 +11,9 @@
 
 		beforeEach(function() {
 			component = this.subject();
+			Ember.run(function() {
+				component.set("value", new ValidDollars(100));
+			});
 			$ = this.$();
 		});
 
@@ -16,11 +21,27 @@
 			expect(component.tagName).to.equal("td");
 		});
 
-		it("renders the 'value' parameter", function() {
+		it("renders text of value objects", function() {
+			var value = new ValidDollars(10000);
+
 			Ember.run(function() {
-				component.set("value", "$10,000");
+				component.set("value", value);
 			});
 			expect($.html()).to.equal("$10,000");
+		});
+
+		it("renders negative values with a 'negative' CSS class", function() {
+			Ember.run(function() {
+				component.set("value", new ValidDollars(-1234));
+			});
+
+			expect($.html()).to.equal("($1,234)");
+			expect($.hasClass("negative")).to.be(true);
+
+			Ember.run(function() {
+				component.set("value", new ValidDollars(1234));
+			});
+			expect($.hasClass("negative")).to.be(false);
 		});
 
 	});
