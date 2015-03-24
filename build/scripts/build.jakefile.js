@@ -10,7 +10,6 @@
 
 	var shell = require("shelljs");
 	var jshint = require("simplebuild-jshint");
-	var mocha = require("../util/mocha_runner.js");
 	var karma = require("../util/karma_runner.js");
 	var browserify = require("../util/browserify_runner.js");
 	var version = require("../util/version_checker.js");
@@ -22,10 +21,6 @@
 	var paths = require("../config/paths.js");
 
 	var KARMA_CONFIG = "./build/config/karma.conf.js";
-	var MOCHA_CONFIG = {
-		ui: "bdd",
-		reporter: "dot"
-	};
 
 	var strict = !process.env.loose;
 
