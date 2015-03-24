@@ -17,6 +17,8 @@
 	var App = module.exports = Ember.Application.create({
 		Resolver: CommonJsResolver
 	});
+
 	App.StockMarketRowComponent = require("./ui/stock_market_row.js");
+	App.StockMarketCellComponent = require("./ui/stock_market_cell.js");
 
 }());
