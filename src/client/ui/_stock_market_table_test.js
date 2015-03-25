@@ -40,7 +40,7 @@
 			$ = this.$();
 		});
 
-		it("renders first year", function() {
+		it("converts first year", function() {
 			expect(component.get("years")[0]).to.eql(firstYear);
 		});
 
@@ -48,7 +48,7 @@
 			expect($.find("tbody tr").length).to.equal(41);
 		});
 
-		it("renders each year differently", function() {
+		it("converts each year separately", function() {
 			expect(component.get("years")[40].year()).to.eql(new Year(2050));
 		});
 

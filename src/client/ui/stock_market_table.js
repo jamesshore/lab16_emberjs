@@ -2,12 +2,6 @@
 (function() {
 	"use strict";
 
-	var StockMarketYear = require("../domain/stock_market_year.js");
-	var Year = require("../values/year.js");
-	var ValidDollars = require("../values/valid_dollars.js");
-	var GrowthRate = require("../values/growth_rate.js");
-	var TaxRate = require("../values/tax_rate.js");
-
 	module.exports = Ember.Component.extend({
 		years: function() {
 			var projection = this.get("value");
