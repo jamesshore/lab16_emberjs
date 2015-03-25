@@ -19,14 +19,14 @@
 		);
 
 		var component;
-		var $;
+		var $me;
 
 		beforeEach(function() {
 			component = this.subject();
 			Ember.run(function() {
 				component.set("value", year);
 			});
-			$ = this.$();
+			$me = this.$();
 		});
 
 		it("renders a <tr> tag", function() {

@@ -30,14 +30,14 @@
 		);
 
 		var component;
-		var $;
+		var $me;
 
 		beforeEach(function() {
 			component = this.subject();
 			Ember.run(function() {
 				component.set("value", new StockMarketProjection(firstYear, ENDING_YEAR, YEARLY_SPENDING));
 			});
-			$ = this.$();
+			$me = this.$();
 		});
 
 		it("converts first year", function() {
@@ -45,7 +45,7 @@
 		});
 
 		it("renders all years", function() {
-			expect($.find("tbody tr").length).to.equal(41);
+			expect($me.find("tbody tr").length).to.equal(41);
 		});
 
 		it("converts each year separately", function() {

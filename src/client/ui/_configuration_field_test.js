@@ -7,14 +7,14 @@
 	describeComponent("configuration-field", "ConfigurationField", {}, function() {
 
 		var component;
-		var $;
+		var $me;
 
 		beforeEach(function() {
 			component = this.subject();
 			Ember.run(function() {
 				component.set("value", new UserEnteredDollars(""));
 			});
-			$ = this.$();
+			$me = this.$();
 		});
 
 	});
