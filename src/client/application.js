@@ -19,6 +19,9 @@
 	});
 
 	App.ExampleApplicationComponent = require("./ui/example_application.js");
+
+	App.ConfigurationFieldComponent = require("./ui/configuration_field.js");
+
 	App.StockMarketTableComponent = require("./ui/stock_market_table.js");
 	App.StockMarketRowComponent = require("./ui/stock_market_row.js");
 	App.StockMarketCellComponent = require("./ui/stock_market_cell.js");

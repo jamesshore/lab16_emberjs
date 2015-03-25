@@ -24,7 +24,7 @@
 		}.property("_renderedValue"),
 
 		_renderedValue: function() {
-			var renderTarget = new RenderTarget(this);
+			var renderTarget = new RenderTarget();
 			this.get("value").renderTo(renderTarget);
 			return renderTarget;
 		}.property("value")

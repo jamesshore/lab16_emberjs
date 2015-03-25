@@ -17,6 +17,14 @@
 			$me = this.$();
 		});
 
+		it("renders legal values", function() {
+			Ember.run(function() {
+				component.set("value", new UserEnteredDollars("1234"));
+			});
+			var inputField = $me.find("input");
+			expect(inputField.val()).to.equal("1234");
+		});
+
 	});
 
 }());
