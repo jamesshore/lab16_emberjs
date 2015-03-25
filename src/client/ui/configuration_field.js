@@ -6,8 +6,7 @@
 
 	module.exports = Ember.Component.extend({
 		text: function(key, value, previousValue) {
-			//if (arguments.length > 1) this.set("value", new UserEnteredDollars(value));
-			if (arguments.length > 1) console.log("value changed", value);
+			if (arguments.length > 1) this.set("value", new UserEnteredDollars(value));
 
 			return this.get("_renderedValue").text();
 		}.property("_renderedValue"),

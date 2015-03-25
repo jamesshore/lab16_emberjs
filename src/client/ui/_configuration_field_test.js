@@ -39,10 +39,12 @@
 			expect(inputField.attr("title")).to.be("Invalid dollar amount");
 		});
 
-		it.skip("changes value when field changes", function(done) {
-			//var inputField = $me.find("input");
-			//fillIn(inputField, "new value");
-			//andThen(done);
+		it("changes value when field changes", function() {
+			var inputField = $me.find("input");
+			Ember.run(function() {
+				component.set("text", "new value");
+			});
+			expect(inputField.val()).to.equal("new value");
 		});
 
 	});

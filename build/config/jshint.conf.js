@@ -65,6 +65,18 @@
 		Ember: false,
 		"$": false,
 
+		// Ember 'integration' testing helpers
+		visit: false,
+		fillIn: false,
+		click: false,
+		keyEvent: false,
+		triggerEvent: false,
+		find: false,
+		currentPath: false,
+		currentRouteName: false,
+		currentURL: false,
+		andThen: false,
+
 		// Karma, Expect.js, and Ember-Mocha
 		dump: false,
 		expect: false,
