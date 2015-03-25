@@ -8,6 +8,7 @@
 
 	before(function() {
 		App.setupForTesting();
+		App.injectTestHelpers();
 		setResolver(App.Resolver.create({ namespace: App }));
 	});
 
