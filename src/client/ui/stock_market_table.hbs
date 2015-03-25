@@ -11,6 +11,8 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{stock-market-row value=year}}
+    {{#each years as |year|}}
+		  {{stock-market-row value=year}}
+    {{/each}}
 	</tbody>
 </table>
