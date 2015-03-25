@@ -20,7 +20,7 @@
 	    files: [
 		    'src/vendor/jquery-1.10.2.js',
 		    'src/vendor/ember-1.10.0.debug.js',
-		    'src/vendor/ember-mocha-0.5.1.js',
+		    'src/vendor/ember-mocha-0.5.2.js',
 	      'generated/client/**/*.js'
 	    ],
 
