@@ -20,6 +20,7 @@
 
 	App.ExampleApplicationComponent = require("./ui/example_application.js");
 
+	App.ConfigurationPanelComponent = require("./ui/configuration_panel.js");
 	App.ConfigurationFieldComponent = require("./ui/configuration_field.js");
 
 	App.StockMarketTableComponent = require("./ui/stock_market_table.js");
