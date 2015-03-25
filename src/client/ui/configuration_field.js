@@ -7,14 +7,20 @@
 			return this.get("_renderedValue").text();
 		}.property("_renderedValue"),
 
+		invalid: function() {
+			return this.get("_renderedValue").isInvalid();
+		}.property("_renderedValue"),
+
+		tooltip: function() {
+			return this.get("_renderedValue").tooltip();
+		}.property("_renderedValue"),
+
 		_renderedValue: function() {
 			var value = this.get("value");
 			var renderTarget = new RenderTarget(value);
 			value.renderTo(renderTarget);
 			return renderTarget;
 		}.property("value")
-
-
 	});
 
 	function RenderTarget(userEnteredValue) {

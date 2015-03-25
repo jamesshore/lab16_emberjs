@@ -22,7 +22,21 @@
 				component.set("value", new UserEnteredDollars("1234"));
 			});
 			var inputField = $me.find("input");
+
 			expect(inputField.val()).to.equal("1234");
+			expect(inputField.hasClass("invalid")).to.be(false);
+			expect(inputField.attr("title")).to.be(undefined);
+		});
+
+		it("renders invalid values", function() {
+			Ember.run(function() {
+				component.set("value", new UserEnteredDollars("xxx"));
+			});
+			var inputField = $me.find("input");
+
+			expect(inputField.val()).to.equal("xxx");
+			expect(inputField.hasClass("invalid")).to.be(true);
+			expect(inputField.attr("title")).to.be("Invalid dollar amount");
 		});
 
 	});
