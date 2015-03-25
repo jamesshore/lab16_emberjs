@@ -39,9 +39,10 @@
 			expect(inputField.attr("title")).to.be("Invalid dollar amount");
 		});
 
-		it.only("changes value when field changes", function() {
-			var inputField = $me.find("input");
-			fillIn(inputField, "new value");
+		it.skip("changes value when field changes", function(done) {
+			//var inputField = $me.find("input");
+			//fillIn(inputField, "new value");
+			//andThen(done);
 		});
 
 	});
