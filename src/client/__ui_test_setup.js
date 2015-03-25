@@ -7,15 +7,9 @@
 	var App = require("./application.js");
 
 	Ember.Test.MochaAdapter = Ember.Test.Adapter.extend({
-		asyncStart: function() {
-			console.log("asyncStart");
-		},
-		asyncEnd: function() {
-			console.log("asyncEnd");
-		},
-		exception: function() {
-			console.log("exception");
-		}
+		asyncStart: function() {},
+		asyncEnd: function() {},
+		exception: function(err) { throw err; }
 	});
 	Ember.Test.adapter = Ember.Test.MochaAdapter.create();
 
