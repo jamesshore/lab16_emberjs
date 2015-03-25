@@ -2,8 +2,13 @@
 (function() {
 	"use strict";
 
+	var UserEnteredDollars = require("../values/user_entered_dollars.js");
+
 	module.exports = Ember.Component.extend({
-		text: function() {
+		text: function(key, value, previousValue) {
+			//if (arguments.length > 1) this.set("value", new UserEnteredDollars(value));
+			if (arguments.length > 1) console.log("value changed", value);
+
 			return this.get("_renderedValue").text();
 		}.property("_renderedValue"),
 
