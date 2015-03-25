@@ -1,1 +1,0 @@
-Do we need stock_market_cell.hbs?
