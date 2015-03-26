@@ -5,9 +5,17 @@
 	var UserEnteredDollars = require("../values/user_entered_dollars.js");
 
 	module.exports = Ember.Component.extend({
-		startingBalance: new UserEnteredDollars("1"),
-		startingCostBasis: new UserEnteredDollars("x"),
-		yearlySpending: new UserEnteredDollars("3")
+		startingBalance: function() {
+			return this.get("value").getStartingBalance();
+		}.property("value"),
+
+		startingCostBasis: function() {
+			return this.get("value").getStartingCostBasis();
+		}.property("value"),
+
+		yearlySpending: function() {
+			return this.get("value").getYearlySpending();
+		}.property("value")
 	});
 
 }());
