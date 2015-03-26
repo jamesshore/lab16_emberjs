@@ -27,20 +27,27 @@
 		});
 
 		it("updates user configuration when configuration fields change", function() {
-			Ember.run(function() {
-				component.set("startingBalance", new UserEnteredDollars("new balance"));
-			});
-			expect(config.getStartingBalance()).to.eql(new UserEnteredDollars("new balance"));
+			var newBalance = new UserEnteredDollars("new balance");
+			var newCostBasis = new UserEnteredDollars("new cost basis");
+			var newSpending = new UserEnteredDollars("new spending");
 
 			Ember.run(function() {
-				component.set("startingCostBasis", new UserEnteredDollars("new cost basis"));
+				component.set("startingBalance", newBalance);
 			});
-			expect(config.getStartingCostBasis()).to.eql(new UserEnteredDollars("new cost basis"));
+			expect(config.getStartingBalance()).to.eql(newBalance);
+			expect(component.get("startingBalance")).to.eql(newBalance);
 
 			Ember.run(function() {
-				component.set("yearlySpending", new UserEnteredDollars("new spending"));
+				component.set("startingCostBasis", newCostBasis);
 			});
-			expect(config.getYearlySpending()).to.eql(new UserEnteredDollars("new spending"));
+			expect(config.getStartingCostBasis()).to.eql(newCostBasis);
+			expect(component.get("startingCostBasis")).to.eql(newCostBasis);
+
+			Ember.run(function() {
+				component.set("yearlySpending", newSpending);
+			});
+			expect(config.getYearlySpending()).to.eql(newSpending);
+			expect(component.get("yearlySpending")).to.eql(newSpending);
 		});
 	});
 
