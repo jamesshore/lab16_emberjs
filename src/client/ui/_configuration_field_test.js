@@ -44,7 +44,9 @@
 			Ember.run(function() {
 				component.set("text", "new value");
 			});
+
 			expect(inputField.val()).to.equal("new value");
+			expect(component.get("value"), "new value");
 		});
 
 	});
