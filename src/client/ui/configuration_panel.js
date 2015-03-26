@@ -2,19 +2,26 @@
 (function() {
 	"use strict";
 
-	var UserEnteredDollars = require("../values/user_entered_dollars.js");
-
 	module.exports = Ember.Component.extend({
-		startingBalance: function() {
-			return this.get("value").getStartingBalance();
+		startingBalance: function(key, newValue, previousValue) {
+			var value = this.get("value");
+
+			if (arguments.length > 1) value.setStartingBalance(newValue);
+			else return value.getStartingBalance();
 		}.property("value"),
 
-		startingCostBasis: function() {
-			return this.get("value").getStartingCostBasis();
+		startingCostBasis: function(key, newValue, previousValue) {
+			var value = this.get("value");
+
+			if (arguments.length > 1) value.setStartingCostBasis(newValue);
+			else return value.getStartingCostBasis();
 		}.property("value"),
 
-		yearlySpending: function() {
-			return this.get("value").getYearlySpending();
+		yearlySpending: function(key, newValue, previousValue) {
+			var value = this.get("value");
+
+			if (arguments.length > 1) value.setYearlySpending(newValue);
+			else return value.getYearlySpending();
 		}.property("value")
 	});
 
