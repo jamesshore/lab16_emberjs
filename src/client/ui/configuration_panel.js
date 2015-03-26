@@ -4,25 +4,23 @@
 
 	module.exports = Ember.Component.extend({
 		startingBalance: function(key, newValue, previousValue) {
-			var value = this.get("value");
-
-			if (arguments.length > 1) value.setStartingBalance(newValue);
-			else return value.getStartingBalance();
+			if (arguments.length > 1) config(this).setStartingBalance(newValue);
+			else return config(this).getStartingBalance();
 		}.property("value"),
 
 		startingCostBasis: function(key, newValue, previousValue) {
-			var value = this.get("value");
-
-			if (arguments.length > 1) value.setStartingCostBasis(newValue);
-			else return value.getStartingCostBasis();
+			if (arguments.length > 1) config(this).setStartingCostBasis(newValue);
+			else return config(this).getStartingCostBasis();
 		}.property("value"),
 
 		yearlySpending: function(key, newValue, previousValue) {
-			var value = this.get("value");
-
-			if (arguments.length > 1) value.setYearlySpending(newValue);
-			else return value.getYearlySpending();
+			if (arguments.length > 1) config(this).setYearlySpending(newValue);
+			else return config(this).getYearlySpending();
 		}.property("value")
 	});
+
+	function config(self) {
+		return self.get("value");
+	}
 
 }());
