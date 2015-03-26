@@ -25,6 +25,10 @@
 			expect(component.get("yearlySpending")).to.eql(config.getYearlySpending());
 		});
 
+		it("updates user configuration when configuration fields change", function() {
+
+		});
+
 	});
 
 }());
