@@ -2,6 +2,7 @@
 (function() {
 	"use strict";
 
+	var UserConfiguration = require("../persistence/user_configuration.js");
 	var StockMarketYear = require("../domain/stock_market_year.js");
 	var StockMarketProjection = require("../domain/stock_market_projection.js");
 	var Year = require("../values/year.js");
@@ -18,6 +19,7 @@
 	);
 
 	module.exports = Ember.Component.extend({
+		configuration: new UserConfiguration(),
 		projection: new StockMarketProjection(firstYear, new Year(2050), new ValidDollars(36))
 	});
 
