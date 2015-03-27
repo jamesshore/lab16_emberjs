@@ -10,32 +10,35 @@
 	  tagName: "tr",
 
 		year: function() {
-			return this.get("value").year();
-		}.property("value"),
+			return this.get("_value").year();
+		}.property("_value"),
 
 		startingBalance: function() {
-			return this.get("value").startingBalance();
-		}.property("value"),
+			return this.get("_value").startingBalance();
+		}.property("_value"),
 
 		costBasis: function() {
-			return this.get("value").startingCostBasis();
-		}.property("value"),
+			return this.get("_value").startingCostBasis();
+		}.property("_value"),
 
 		sellOrders: function() {
-			return this.get("value").totalSellOrders().flipSign();
-		}.property("value"),
+			return this.get("_value").totalSellOrders().flipSign();
+		}.property("_value"),
 
 		taxes: function() {
-			return this.get("value").capitalGainsTaxIncurred().flipSign();
-		}.property("value"),
+			return this.get("_value").capitalGainsTaxIncurred().flipSign();
+		}.property("_value"),
 
 		growth: function() {
-			return this.get("value").growth();
-		}.property("value"),
+			return this.get("_value").growth();
+		}.property("_value"),
 
 		endingBalance: function() {
-			return this.get("value").endingBalance();
-		}.property("value")
+			return this.get("_value").endingBalance();
+		}.property("_value"),
+
+		value: "",
+		_value: Ember.computed.oneWay("value")
 
 	});
 

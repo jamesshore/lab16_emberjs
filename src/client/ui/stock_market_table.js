@@ -4,13 +4,16 @@
 
 	module.exports = Ember.Component.extend({
 		years: function() {
-			var projection = this.get("value");
+			var projection = this.get("_value");
 			var rows = [];
 			for (var i = 0; i < (projection.numberOfYears()); i++) {
 				rows.push(projection.getYearOffset(i));
 			}
 			return rows;
-		}.property("value")
+		}.property("_value"),
+
+		value: "",
+		_value: Ember.computed.oneWay("value")
 	});
 
 }());

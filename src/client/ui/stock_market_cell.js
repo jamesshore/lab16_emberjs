@@ -25,9 +25,13 @@
 
 		_renderedValue: function() {
 			var renderTarget = new RenderTarget();
-			this.get("value").renderTo(renderTarget);
+			this.get("_value").renderTo(renderTarget);
 			return renderTarget;
-		}.property("value")
+		}.property("_value"),
+
+
+		value: "",
+		_value: Ember.computed.oneWay("value")
 	});
 
 	function RenderTarget() {}
