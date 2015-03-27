@@ -8,7 +8,9 @@
 
 			var current;
 			var rows = this.get("_projection");
-			for (var i = 0; i < (projection.numberOfYears()); i++) {
+			var numYears = projection.numberOfYears();
+			console.log(numYears);
+			for (var i = 0; i < ( numYears); i++) {
 				current = rows.objectAt(i);
 				if (!current) {
 					current = {};
@@ -16,6 +18,7 @@
 				}
 				Ember.set(current, "perfOptimization", projection.getYearOffset(i));
 			}
+			if (numYears < rows.length) rows.removeAt(numYears - 1, rows.length - numYears);
 			return rows;
 		}.property("value"),
 
