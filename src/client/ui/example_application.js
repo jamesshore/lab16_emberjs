@@ -2,7 +2,6 @@
 (function() {
 	"use strict";
 
-	var Year = require("../values/year.js");
 	var UserConfiguration = require("../persistence/user_configuration.js");
 	var StockMarketYear = require("../domain/stock_market_year.js");
 	var StockMarketProjection = require("../domain/stock_market_projection.js");
@@ -34,7 +33,7 @@
 		);
 		return new StockMarketProjection(
 			firstYear,
-			new Year(2010 + Math.floor(Math.random() * 15)),
+			UserConfiguration.ENDING_YEAR,
 			config.getYearlySpending()
 		);
 	}
