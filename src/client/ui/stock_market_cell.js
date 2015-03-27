@@ -9,25 +9,25 @@
 
 		text: function() {
 			return this.get("_renderedValue").text();
-		}.property("_renderedValue"),
+		}.property("_renderedValue").readOnly(),
 
 		title: function() {
 			return this.get("_renderedValue").tooltip();
-		}.property("_renderedValue"),
+		}.property("_renderedValue").readOnly(),
 
 		negative: function() {
 			return this.get("_renderedValue").isNegative();
-		}.property("_renderedValue"),
+		}.property("_renderedValue").readOnly(),
 
 		invalid: function() {
 			return this.get("_renderedValue").isInvalid();
-		}.property("_renderedValue"),
+		}.property("_renderedValue").readOnly(),
 
 		_renderedValue: function() {
 			var renderTarget = new RenderTarget();
 			this.get("value").renderTo(renderTarget);
 			return renderTarget;
-		}.property("value")
+		}.property("value").readOnly()
 	});
 
 	function RenderTarget() {}

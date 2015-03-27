@@ -11,31 +11,31 @@
 
 		year: function() {
 			return this.get("value").year();
-		}.property("value"),
+		}.property("value").readOnly(),
 
 		startingBalance: function() {
 			return this.get("value").startingBalance();
-		}.property("value"),
+		}.property("value").readOnly(),
 
 		costBasis: function() {
 			return this.get("value").startingCostBasis();
-		}.property("value"),
+		}.property("value").readOnly(),
 
 		sellOrders: function() {
 			return this.get("value").totalSellOrders().flipSign();
-		}.property("value"),
+		}.property("value").readOnly(),
 
 		taxes: function() {
 			return this.get("value").capitalGainsTaxIncurred().flipSign();
-		}.property("value"),
+		}.property("value").readOnly(),
 
 		growth: function() {
 			return this.get("value").growth();
-		}.property("value"),
+		}.property("value").readOnly(),
 
 		endingBalance: function() {
 			return this.get("value").endingBalance();
-		}.property("value")
+		}.property("value").readOnly()
 
 	});
 

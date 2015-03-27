@@ -10,7 +10,7 @@
 				rows.push(projection.getYearOffset(i));
 			}
 			return rows;
-		}.property("value")
+		}.property("value").readOnly()
 	});
 
 }());
