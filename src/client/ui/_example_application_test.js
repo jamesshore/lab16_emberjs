@@ -19,11 +19,24 @@
 		});
 
 		it("starts out with default configuration", function() {
-			expect(component.get("configuration")).to.eql(new UserConfiguration());
+			var config = component.get("configuration");
+
+			expect(config.getStartingBalance()).to.eql(UserConfiguration.DEFAULT_STARTING_BALANCE);
+			expect(config.getStartingCostBasis()).to.eql(UserConfiguration.DEFAULT_STARTING_COST_BASIS);
+			expect(config.getYearlySpending()).to.eql(UserConfiguration.DEFAULT_YEARLY_SPENDING);
 		});
 		
 		it("renders stock market table with projection based on user configuration", function() {
 			expect(component.get("projection")).to.eql(projectionFor(new UserConfiguration()));
+		});
+
+		it("updates stock market table when user configuration changes", function() {
+			var config = component.get("configuration");
+			Ember.run(function() {
+				config.setStartingBalance(new UserEnteredDollars("new value"));
+			});
+
+			expect(component.get("projection")).to.eql(projectionFor(config));
 		});
 
 		function projectionFor(config) {

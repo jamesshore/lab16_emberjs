@@ -7,6 +7,15 @@
 	var StockMarketProjection = require("../domain/stock_market_projection.js");
 
 	module.exports = Ember.Component.extend({
+		init: function() {
+			this._super();
+
+			var self = this;
+			this.get("configuration").onChange(function() {
+				self.notifyPropertyChange("projection");
+			});
+		},
+
 		configuration: new UserConfiguration(),
 
 		projection: function() {
