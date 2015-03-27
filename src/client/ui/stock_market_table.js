@@ -9,7 +9,6 @@
 			var current;
 			var rows = this.get("_projection");
 			var numYears = projection.numberOfYears();
-			console.log(numYears);
 			for (var i = 0; i < ( numYears); i++) {
 				current = rows.objectAt(i);
 				if (!current) {
