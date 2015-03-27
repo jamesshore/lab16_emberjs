@@ -41,7 +41,7 @@
 		});
 
 		it("converts first year", function() {
-			expect(component.get("years")[0].yearObject).to.eql(firstYear);
+			expect(component.get("years")[0].perfOptimization).to.eql(firstYear);
 		});
 
 		it("renders all years", function() {
@@ -49,7 +49,7 @@
 		});
 
 		it("converts each year separately", function() {
-			expect(component.get("years")[40].yearObject.year()).to.eql(new Year(2050));
+			expect(component.get("years")[40].perfOptimization.year()).to.eql(new Year(2050));
 		});
 
 	});

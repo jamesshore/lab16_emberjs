@@ -14,7 +14,7 @@
 					current = {};
 					rows.insertAt(i, current);
 				}
-				Ember.set(current, "yearObject", projection.getYearOffset(i));
+				Ember.set(current, "perfOptimization", projection.getYearOffset(i));
 			}
 			return rows;
 		}.property("value"),
