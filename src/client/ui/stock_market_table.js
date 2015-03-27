@@ -5,12 +5,21 @@
 	module.exports = Ember.Component.extend({
 		years: function() {
 			var projection = this.get("value");
-			var rows = [];
+
+			var current;
+			var rows = this.get("_projection");
 			for (var i = 0; i < (projection.numberOfYears()); i++) {
-				rows.push(projection.getYearOffset(i));
+				current = rows.objectAt(i);
+				if (!current) {
+					current = {};
+					rows.insertAt(i, current);
+				}
+				Ember.set(current, "yearObject", projection.getYearOffset(i));
 			}
 			return rows;
-		}.property("value")
+		}.property("value"),
+
+		_projection: []
 	});
 
 }());
