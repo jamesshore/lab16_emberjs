@@ -6,9 +6,9 @@
 		years: function() {
 			var projection = this.get("value");
 			var rows = [];
-		  for (var i = 0; i < (projection.numberOfYears()); i++) {
-			  rows.push(projection.getYearOffset(i));
-	    }
+			for (var i = 0; i < (projection.numberOfYears()); i++) {
+				rows.push(projection.getYearOffset(i));
+			}
 			return rows;
 		}.property("value")
 	});
