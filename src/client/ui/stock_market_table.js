@@ -4,13 +4,23 @@
 
 	module.exports = Ember.Component.extend({
 		years: function() {
+			var thisRow;
 			var projection = this.get("value");
-			var rows = [];
-			for (var i = 0; i < (projection.numberOfYears()); i++) {
-				rows.push(projection.getYearOffset(i));
+			var numYears = projection.numberOfYears();
+			var rows = this.get("_yearsArray");
+			for (var i = 0; i < numYears; i++) {
+				thisRow = rows.objectAt(i);
+				if (!thisRow) {
+					thisRow = {};
+					rows.insertAt(i, thisRow);
+				}
+				Ember.set(thisRow, "perfOptimization", projection.getYearOffset(i));
 			}
+			if (numYears < rows.length) rows.removeAt(numYears, rows.length - numYears);
 			return rows;
-		}.property("value")
+		}.property("value"),
+
+		_yearsArray: []
 	});
 
 }());

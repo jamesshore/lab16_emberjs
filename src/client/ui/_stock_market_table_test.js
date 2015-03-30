@@ -41,7 +41,7 @@
 		});
 
 		it("converts first year", function() {
-			expect(component.get("years")[0]).to.eql(firstYear);
+			expect(component.get("years")[0].perfOptimization).to.eql(firstYear);
 		});
 
 		it("renders all years", function() {
@@ -49,7 +49,23 @@
 		});
 
 		it("converts each year separately", function() {
-			expect(component.get("years")[40].year()).to.eql(new Year(2050));
+			expect(component.get("years")[40].perfOptimization.year()).to.eql(new Year(2050));
+		});
+
+		it("removes year rows when projection shrinks", function() {
+			var shortProjection = new StockMarketProjection(firstYear, STARTING_YEAR, YEARLY_SPENDING);
+			Ember.run(function() {
+				component.set("value", shortProjection);
+			});
+			expect($me.find("tbody tr").length).to.equal(1);
+		});
+
+		it("adds year rows when projection grows", function() {
+			var longProjection = new StockMarketProjection(firstYear, ENDING_YEAR.nextYear(), YEARLY_SPENDING);
+			Ember.run(function() {
+				component.set("value", longProjection);
+			});
+			expect($me.find("tbody tr").length).to.equal(42);
 		});
 
 	});
