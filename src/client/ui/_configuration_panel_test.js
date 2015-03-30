@@ -49,6 +49,15 @@
 			expect(config.getYearlySpending()).to.eql(newSpending);
 			expect(component.get("yearlySpending")).to.eql(newSpending);
 		});
+
+		it("updates configuration fields when user configuration changes", function() {
+			var newBalance = new UserEnteredDollars("new balance");
+
+			Ember.run(function() {
+				config.setStartingBalance(newBalance);
+			});
+			expect(component.get("startingBalance")).to.eql(newBalance);
+		});
 	});
 
 }());

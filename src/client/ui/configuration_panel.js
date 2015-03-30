@@ -3,6 +3,13 @@
 	"use strict";
 
 	module.exports = Ember.Component.extend({
+		_configWatcher: function() {
+			var self = this;
+			config(this).onChange("configuration_panel", function() {
+				self.notifyPropertyChange("value");
+			});
+		}.observes("value"),
+
 		startingBalance: function(key, newValue, previousValue) {
 			if (arguments.length > 1) config(this).setStartingBalance(newValue);
 
@@ -20,6 +27,8 @@
 
 			return config(this).getYearlySpending();
 		}.property("value")
+
+
 	});
 
 	function config(self) {
