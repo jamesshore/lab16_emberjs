@@ -62,12 +62,16 @@ UserConfiguration.prototype.setYearlySpending = function setYearlySpending(dolla
 	triggerChangeEvent(this);
 };
 
-UserConfiguration.prototype.onChange = function onChange(callback) {
-	this._changeHandlers.push(callback);
+UserConfiguration.prototype.onChange = function onChange(key, callback) {
+	failFast.unlessString(key, "key");
+	failFast.unlessFunction(callback, "callback");
+
+	this._changeHandlers[key] = callback;
 };
 
 function triggerChangeEvent(self) {
-	self._changeHandlers.forEach(function(handler) {
-		handler(self);
+	Object.keys(self._changeHandlers).forEach(function(key) {
+		var handler = self._changeHandlers[key];
+		handler();
 	});
 }

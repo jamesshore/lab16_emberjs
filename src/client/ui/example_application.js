@@ -11,7 +11,7 @@
 			this._super();
 
 			var self = this;
-			this.get("configuration").onChange(function() {
+			this.get("configuration").onChange("example_application", function() {
 				self.notifyPropertyChange("projection");
 			});
 		},

@@ -22,10 +22,11 @@ describe("UserConfiguration", function() {
 
 	describe("change event", function() {
 
-		var eventTriggered = false;
+		var eventTriggered;
 
 		beforeEach(function() {
-			config.onChange(function() {
+			eventTriggered = false;
+			config.onChange("firstHandler", function() {
 				eventTriggered = true;
 			});
 		});
@@ -48,9 +49,20 @@ describe("UserConfiguration", function() {
 			expect(config.getYearlySpending()).to.equal(newValue);
 		});
 
+		it("handler is replaced when a new handler with same key is added", function() {
+			var secondHandlerTriggered = false;
+			config.onChange("firstHandler", function() {
+				secondHandlerTriggered = true;
+			});
+
+			config.setStartingBalance(newValue);
+			expect(eventTriggered).to.be(false);
+			expect(secondHandlerTriggered).to.be(true);
+		});
+
 		it("supports multiple observers", function() {
 			var secondHandlerTriggered = false;
-			config.onChange(function() {
+			config.onChange("secondHandler", function() {
 				secondHandlerTriggered = true;
 			});
 
