@@ -1,7 +1,7 @@
 The Lab: Front-End Frameworks: Ember.js
 ===========
 
-This repository contains the sample code for the [Front-End Frameworks: Ember.js](http://www.letscodejavascript.com/v3/episodes/lab/16) episodes ([Part I](http://www.letscodejavascript.com/v3/episodes/lab/16); [Part II](http://www.letscodejavascript.com/v3/episodes/lab/17); Part III forthcoming) of James Shore's screencast. Let's Code: Test-Driven JavaScript is a screencast series focused on rigorous, professional JavaScript development.
+This repository contains the sample code for the [Front-End Frameworks: Ember.js](http://www.letscodejavascript.com/v3/episodes/lab/16) episodes ([Part I](http://www.letscodejavascript.com/v3/episodes/lab/16); [Part II](http://www.letscodejavascript.com/v3/episodes/lab/17); [Part III](http://www.letscodejavascript.com/v3/episodes/lab/18)) of James Shore's screencast. Let's Code: Test-Driven JavaScript is a screencast series focused on rigorous, professional JavaScript development.
 
 These episodes are an exploration and review of the [Ember.js](https://emberjs.com/) framework for building web applications. This repository contains an example application written in AngularJS. It demonstrates several concepts:
 
@@ -11,15 +11,17 @@ These episodes are an exploration and review of the [Ember.js](https://emberjs.c
 
   See the screencasts for more information about the sample app.
 
-2. **Unit Tests.** All the code is unit tested. You can find tests of the Ember.js components in `src/client/ui/_*_test.js`. The code uses Mocha, rather than Ember's default assumption of QUnit, which led to some challenges—see "Mocha and Karma," below.
+2. **Unit Tests.** All the code is unit tested. You can find tests of the Ember.js components in `src/client/ui/_*_test.js`. The code uses Mocha, rather than Ember's default assumption of QUnit, which led to some challenges. See "Mocha and Karma," below, for details.
 
-3. **Custom build and app structure.** Ember.js is meant to be used with the [ember-cli](http://www.ember-cli.com/) tool. The example application demonstrates doing it your own way. The hardest part was integrating Ember's HTMLBars templates. There are two aspects to making the templates work: first, the HTMLBars templates are compiled into a `templates.js` JavaScript file (see `build/util/htmlbars_compiler.js` and the `compileTemplates` task in `build/scripts/build.jakefile.js` for the code); second, Ember is told where the compiled templates are via the CommonJsResolver in `src/client/application.js`. You can use `htmlbars_compiler.js` in your own build scripts.
+3. **Custom build and app structure.** Ember.js is meant to be used with the [ember-cli](http://www.ember-cli.com/) tool. This example application demonstrates doing it without ember-cli.
+
+  The hardest part was integrating Ember's HTMLBars templates. There are two aspects to making the templates work: first, the HTMLBars templates are compiled into a `templates.js` JavaScript file (see `build/util/htmlbars_compiler.js` and the `compileTemplates` task in `build/scripts/build.jakefile.js`); second, Ember is told where the compiled templates are via the CommonJsResolver in `src/client/application.js`. You can use `htmlbars_compiler.js` in your own build scripts.
 
 4. **CommonJS modules.** The ember-cli tool assumes that you use ES6 modules. The example application uses CommonJS modules instead. To do this, each component needs to be loaded into the application namespace. You can see this in `src/client/application.js`.
 
 5. **Mocha and Karma.** The ember-cli tool assumes that you use QUnit and Test'em Scripts. The example application uses Mocha and Karma instead. This was a particular challenge due to lack of support and poor documentation, but the final code is fairly straightforward. First, be sure to include the [ember-mocha](https://github.com/switchfly/ember-mocha) adapter in your Karma configuration (see `build/config/karma.conf.js`). Second, run some global setup code (see `src/client/__ui_test_setup.js`). Third, use ember-mocha's `describeComponent` adapter and `this.xxx` magic functions in each test (for example, see `src/client/ui/_stock_market_row_test.js`).
 
-Deviating from Ember's tool assumptions was an experiment to see how well Ember worked outside its comfort zone. Although the final code is fairly clean, it was a frustrating experience and not necessarily something to do in your own projects.
+Deviating from Ember's tool assumptions was an experiment to see how well Ember worked outside its comfort zone. Although the final code is fairly clean, it was a frustrating experience and not recommended for your own projects.
 
 For further details about how this code works, watch [the screencasts](http://www.letscodejavascript.com/v3/episodes/lab/16).
 
