@@ -3,7 +3,7 @@ The Lab: Front-End Frameworks: Ember.js
 
 This repository contains the sample code for the [Front-End Frameworks: Ember.js](http://www.letscodejavascript.com/v3/episodes/lab/16) episodes ([Part I](http://www.letscodejavascript.com/v3/episodes/lab/16); [Part II](http://www.letscodejavascript.com/v3/episodes/lab/17); [Part III](http://www.letscodejavascript.com/v3/episodes/lab/18)) of James Shore's screencast. Let's Code: Test-Driven JavaScript is a screencast series focused on rigorous, professional JavaScript development.
 
-These episodes are an exploration and review of the [Ember.js](https://emberjs.com/) framework for building web applications. This repository contains an example application written in AngularJS. It demonstrates several concepts:
+These episodes are an exploration and review of the [Ember.js](https://emberjs.com/) framework for building web applications. This repository contains an example application written in Ember.js. It demonstrates several concepts:
 
 1. **Sample application.** The sample application code can be found in `src/client`. The main page is `index.html` and the top-level application template is `application.hbs`. The application is launched from `application.js`. The UI is implemented via components in `src/client/ui`.
 
